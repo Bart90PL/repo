@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Generator PESEL, DO, NIP, REGON, NRB dla QA</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				margin: 0;
+				background-color: #f4f4f4;
+			}
+			.header {
+				text-align: center;
+				margin-bottom: 20px;
+				color: #333;
+			}
+			.header h1 {
+				font-size: 32px;
+				margin: 0;
+			}
+			.header p {
+				font-size: 16px;
+				color: #666;
+				margin: 5px 0 0;
+			}
+			.container {
+				background-color: #fff;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			.field {
+				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
+			}
+			input[type='text'] {
+				padding: 10px;
+				font-size: 16px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				width: 300px;
+				margin-right: 10px;
+			}
+			button {
+				padding: 10px;
+				font-size: 16px;
+				border: none;
+				border-radius: 4px;
+				background-color: #28a745;
+				color: white;
+				cursor: pointer;
+				margin-right: 5px;
+			}
+			button:hover {
+				background-color: #218838;
+			}
+			.copy-btn {
+				background-color: #007bff;
+			}
+			.copy-btn:hover {
+				background-color: #0056b3;
+			}
+		</style>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<header class="header">
+			<h1>Generator PESEL, DO, NIP, REGON, KRS, NRB</h1>
+			<p>Narzędzie dla QA do generowania przykładowych danych</p>
+		</header>
+		<div class="container">
+			<div class="field">
+				<input type="text" id="pesel" placeholder="Numer PESEL" readonly />
+				<button onclick="generatePeselNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('pesel')">
+					Kopiuj
+				</button>
+			</div>
+			<div class="field">
+				<input
+					type="text"
+					id="idCardNumber"
+					placeholder="Seria i numer dowodu osobistego"
+					readonly
+				/>
+				<button onclick="generateIdCardNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('idCardNumber')">
+					Kopiuj
+				</button>
+			</div>
+			<div class="field">
+				<input type="text" id="nip" placeholder="Numer NIP" readonly />
+				<button onclick="generateNipNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('nip')">
+					Kopiuj
+				</button>
+			</div>
+			<div class="field">
+				<input type="text" id="regon" placeholder="Numer REGON" readonly />
+				<button onclick="generateRegonNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('regon')">
+					Kopiuj
+				</button>
+			</div>
+			<div class="field">
+				<input type="text" id="krs" placeholder="Numer KRS" readonly />
+				<button onclick="generateKrsNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('krs')">
+					Kopiuj
+				</button>
+			</div>
+			<div class="field">
+				<input
+					type="text"
+					id="accountNumber"
+					placeholder="Numer rachunku bankowego"
+					readonly
+				/>
+				<button onclick="generateAccountNumber()">Generuj</button>
+				<button class="copy-btn" onclick="copyToClipboard('accountNumber')">
+					Kopiuj
+				</button>
+			</div>
+		</div>
+	</body>
+</html>
