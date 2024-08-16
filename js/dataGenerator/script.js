@@ -5,18 +5,47 @@ function copyToClipboard(elementId) {
 		navigator.clipboard
 			.writeText(copyText)
 			.then(() => {
-				alert('Skopiowano: ' + copyText);
+				showTemporaryAlert('Skopiowano: ' + copyText);
 			})
 			.catch((err) => {
 				console.error('Błąd podczas kopiowania: ', err);
 			});
 	} else {
-		// Fallback dla starszych przeglądarek
 		const copyElement = document.getElementById(elementId);
 		copyElement.select();
 		document.execCommand('copy');
-		alert('Skopiowano: ' + copyText);
+		showTemporaryAlert('Skopiowano: ' + copyText);
 	}
+}
+
+function showTemporaryAlert(message) {
+	const alertBox = document.createElement('div');
+	alertBox.textContent = message;
+	alertBox.style.position = 'fixed';
+	alertBox.style.top = '-50px';
+	alertBox.style.left = '50%';
+	alertBox.style.transform = 'translateX(-50%)';
+	alertBox.style.backgroundColor = '#28a745';
+	alertBox.style.color = 'white';
+	alertBox.style.padding = '10px';
+	alertBox.style.borderRadius = '5px';
+	alertBox.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.1)';
+	alertBox.style.zIndex = '1000';
+	alertBox.style.transition = 'top 0.5s ease, opacity 0.5s ease';
+
+	document.body.appendChild(alertBox);
+
+	setTimeout(() => {
+		alertBox.style.top = '20px';
+	}, 100);
+
+	setTimeout(() => {
+		alertBox.style.opacity = '0';
+	}, 3000);
+
+	setTimeout(() => {
+		alertBox.remove();
+	}, 3500);
 }
 
 function generatePeselNumber() {
