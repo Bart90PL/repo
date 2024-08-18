@@ -1,3 +1,33 @@
+function toggleSettings() {
+	const settings = document.getElementById('settings');
+	settings.style.display =
+		settings.style.display === 'block' ? 'none' : 'block';
+}
+
+function copyToClipboard(elementId) {
+	const copyText = document.getElementById(elementId).value;
+
+	if (navigator.clipboard) {
+		navigator.clipboard
+			.writeText(copyText)
+			.then(() => {
+				showTemporaryAlert('Skopiowano: ' + copyText);
+			})
+			.catch((err) => {
+				console.error('Błąd podczas kopiowania: ', err);
+			});
+	} else {
+		const copyElement = document.getElementById(elementId);
+		copyElement.select();
+		document.execCommand('copy');
+		showTemporaryAlert('Skopiowano: ' + copyText);
+	}
+}
+
+function clearAllFields() {
+	location.reload();
+}
+
 function copyToClipboard(elementId) {
 	const copyText = document.getElementById(elementId).value;
 
@@ -49,8 +79,19 @@ function showTemporaryAlert(message) {
 }
 
 function generatePeselNumber() {
-	let year = Math.floor(Math.random() * 235) + 1800;
-	let month = Math.floor(Math.random() * 12) + 1;
+	const birthdateInput = document.getElementById('birthdate').value;
+	let year, month, day;
+
+	if (birthdateInput) {
+		const birthdate = new Date(birthdateInput);
+		year = birthdate.getFullYear();
+		month = birthdate.getMonth() + 1;
+		day = birthdate.getDate();
+	} else {
+		year = Math.floor(Math.random() * 235) + 1800;
+		month = Math.floor(Math.random() * 12) + 1;
+		day = Math.floor(Math.random() * 28) + 1;
+	}
 
 	if (year > 1999 && year <= 2099) {
 		month += 20;
@@ -67,8 +108,26 @@ function generatePeselNumber() {
 
 	const yearStr = String(year).padStart(2, '0');
 	const monthStr = String(month).padStart(2, '0');
-	const dayStr = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-	const rndStr = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+	const dayStr = String(day).padStart(2, '0');
+
+	// Wybór płci lub losowanie, jeśli żadna nie jest wybrana
+	const selectedGender = document.querySelector('input[name="gender"]:checked');
+	let gender;
+	if (selectedGender) {
+		gender = selectedGender.value;
+	} else {
+		// Losowy wybór płci, jeśli żadna nie jest wybrana
+		gender = Math.random() < 0.5 ? 'male' : 'female';
+	}
+
+	let randomNumber;
+	if (gender === 'male') {
+		randomNumber = Math.floor(Math.random() * 5000) * 2 + 1;
+	} else {
+		randomNumber = Math.floor(Math.random() * 5000) * 2;
+	}
+
+	const rndStr = String(randomNumber).padStart(4, '0');
 	const peselWithoutControl = `${yearStr}${monthStr}${dayStr}${rndStr}`;
 
 	let checksum = 0;
