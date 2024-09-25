@@ -1,0 +1,24 @@
+{
+	"name": "demoank",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test:headless:prod": "ENV_FILE=.env.prod npx playwright test",
+		"test:headed:prod": "NV_FILE=.env.prod npx playwright test --headed",
+		"test:ui:prod": "NV_FILE=.env.prod npx playwright test --ui"
+	},
+	"keywords": [
+		"demoBank",
+		"onlineBanking"
+	],
+	"author": "Bart90PL",
+	"license": "ISC",
+	"devDependencies": {
+		"@playwright/test": "^1.47.1",
+		"@types/node": "^22.5.4"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5"
+	}
+}
