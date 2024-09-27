@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Race Registration</title>
+		<link rel="stylesheet" href="/static/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h2>Race Registration</h2>
+			<form id="registrationForm" action="/register" method="POST">
+				<label for="name">First Name:</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					required
+					oninput="validateName()"
+				/><br />
+				<div id="nameError" style="color: red; display: none">
+					First name can only contain letters.
+				</div>
+
+				<label for="surname">Last Name:</label>
+				<input
+					type="text"
+					id="surname"
+					name="surname"
+					required
+					oninput="validateSurname()"
+				/><br />
+				<div id="surnameError" style="color: red; display: none">
+					Last name can only contain letters.
+				</div>
+
+				<label for="age">Age (max 3 digits):</label>
+				<input
+					type="number"
+					id="age"
+					name="age"
+					required
+					oninput="validateAge()"
+				/><br />
+				<div id="ageError" style="color: red; display: none">
+					Age must be a maximum of 3 digits.
+				</div>
+
+				<label for="gender">Gender:</label>
+				<select id="gender" name="gender">
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+					<option value="I">Other</option>
+					<option value="N">Prefer not to say</option></select
+				><br />
+
+				<label for="email">Email Address:</label>
+				<input type="email" id="email" name="email" required /><br />
+
+				<label for="phone">Phone Number (9 digits):</label>
+				<input
+					type="tel"
+					id="phone"
+					name="phone"
+					pattern="\d{9}"
+					required
+					oninput="validatePhone()"
+				/>
+				<div id="phoneError" style="color: red; display: none">
+					Phone number must be exactly 9 digits.
+				</div>
+				<br />
+
+				<label for="distance">Race Distance:</label>
+				<select id="distance" name="distance">
+					<option value="5">5 km</option>
+					<option value="10">10 km</option>
+					<option value="20">20 km</option></select
+				><br />
+
+				<label for="password">Password (minimum 8 characters):</label>
+				<input
+					type="password"
+					id="password"
+					name="password"
+					required
+					oninput="validatePassword()"
+				/><br />
+				<div id="passwordError" style="color: red; display: none">
+					Password must be at least 8 characters long.
+				</div>
+
+				<label for="confirmPassword">Confirm Password:</label>
+				<input
+					type="password"
+					id="confirmPassword"
+					name="confirmPassword"
+					required
+					oninput="validateConfirmPassword()"
+				/><br />
+				<div id="confirmPasswordError" style="color: red; display: none">
+					Passwords do not match.
+				</div>
+
+				<button type="submit">Register</button>
+			</form>
+		</div>
+		<script src="/static/js/validation.js"></script>
+	</body>
+</html>
