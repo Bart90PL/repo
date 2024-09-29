@@ -18,7 +18,7 @@ def register():
     distance = request.form['distance']
     password = request.form['password']
 
-    print(f"Rejestracja: {name} {surname}, Wiek: {age}, Płeć: {gender}, Email: {email}, Telefon: {phone}, Dystans: {distance} km")
+    print(f"Registration: {name} {surname}, Age: {age}, Gender: {gender}, Email: {email}, Phone: {phone}, Distance: {distance} km")
 
     return jsonify({"status": "success", "message": "Registered successfully!"})
 
